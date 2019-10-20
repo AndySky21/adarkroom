@@ -26,7 +26,7 @@ div#saveNotify {
 	background-color: #272823;
 }
 
-*.tooltip {
+div.tooltip {
 	background-color: #171813;
 	border: 1px solid black;
 	box-shadow: -1px 3px 2px #111;
