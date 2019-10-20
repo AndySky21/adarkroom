@@ -365,13 +365,13 @@ div.button div.cooldown {
 	border-color: #999 transparent transparent;
 }
 
-div.button div.tooltip {
+div.button *.tooltip {
 	width: 100px;
 }
 
 /* Tooltip */
 
-div.tooltip {
+*.tooltip {
 	display: none;
 	padding: 2px 5px;
 	border: 1px solid black;
@@ -397,19 +397,19 @@ div.tooltip {
 	bottom: 20px;
 }
 
-*:hover > div.tooltip {
+*:hover > *.tooltip {
 	display: block;
 }
 
-div.tooltip:hover {
+*.tooltip:hover {
 	display: none !important;
 }
 
-.disabled:hover > div.tooltip, .button.free:hover > div.tooltip {
+.disabled:hover > *.tooltip, .button.free:hover > *.tooltip {
 	display: none;
 }
 
-#event .button.disabled:hover > div.tooltip {
+#event .button.disabled:hover > *.tooltip {
 	display: block;
 }
 
