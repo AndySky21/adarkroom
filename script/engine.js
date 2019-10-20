@@ -135,8 +135,8 @@
 
 			$('<span>')
 				.addClass('appStore menuBtn')
-				.text(_('app store.'))
-				.click(function() { window.open('https://itunes.apple.com/app/apple-store/id736683061?pt=2073437&ct=adrproper&mt=8'); })
+				.text(_('get the app.'))
+				.click(Engine.getApp)
 				.appendTo(menu);
 
 			$('<span>')
@@ -403,6 +403,37 @@
 			}
 		},
 
+		getApp: function() {
+			Events.startEvent({
+				title: _('Get the App'),
+				scenes: {
+					start: {
+						text: [_('bring the room with you.')],
+						buttons: {
+							'ios': {
+								text: _('ios'),
+								nextScene: 'end',
+								onChoose: function () {
+									window.open('https://itunes.apple.com/app/apple-store/id736683061?pt=2073437&ct=adrproper&mt=8');
+								}
+							},
+							'android': {
+								text: _('android'),
+								nextScene: 'end',
+								onChoose: function() {
+									window.open('https://play.google.com/store/apps/details?id=com.yourcompany.adarkroom');
+								}
+							},
+							'close': {
+								text: _('close'),
+								nextScene: 'end'
+							}
+						}
+					}
+				}
+			});
+		},
+
 		share: function() {
 			Events.startEvent({
 				title: _('Share'),
@@ -550,10 +581,6 @@
 					stores.animate({right: -(panelIndex * 700) + 'px'}, 300 * diff);
 				}
 
-				Engine.activeModule = module;
-
-				module.onArrival(diff);
-
 				if(Engine.activeModule == Room || Engine.activeModule == Path) {
 					// Don't fade out the weapons if we're switching to a module
 					// where we're going to keep showing them anyway.
@@ -566,6 +593,8 @@
 					$('div#weapons').animate({opacity: 1}, 300);
 				}
 
+				Engine.activeModule = module;
+				module.onArrival(diff);
 				Notifications.printQueue(module);
 
 			}
